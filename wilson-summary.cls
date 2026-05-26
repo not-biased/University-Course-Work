@@ -24,3 +24,11 @@
 \def\@chaptertitle{Chapter Title}
 \def\@coursename{Course Name}
 \def\@semester{Semester}
+
+% Page Setup so that the fancy look professors enjoy is here
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\textbf{\@chaptertitle\ Summary Notes}}
+\fancyfoot[C]{\@coursename\ --\ \@semester}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.5pt}
