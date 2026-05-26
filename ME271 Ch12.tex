@@ -17,29 +17,69 @@ Remember that this is a summer course so the level of detail is up to the studen
 % Section 1 (e.g., 1.1)
 % ==========================================
 \section*{12.1: Introduction}
-% Content goes here.
 
-\subsection*{Subsection Title (if needed)}
-Use \verb|itemize| with \verb|[nosep]| for compact lists:
-\begin{itemize}[nosep]
-    \item First item
-    \item Second item
-\end{itemize}
+\subsection*{Mechanics}
+% Definition sentence, then the two branches
+\definition{Mechanics} studies the state of rest or motion of bodies subjected to forces.
+\vspace{4pt}
+\begin{tabular}{@{}p{3.2cm} p{9cm}@{}}
+\toprule
+\textbf{Branch} & \textbf{Description} \\
+\midrule
+\textbf{Statics}   & Equilibrium of a body at rest or moving at constant velocity $(\Sigma F = 0)$ \\[4pt]
+\textbf{Dynamics}  & Deals with acceleration $(\Sigma F = ma)$ \\[2pt]
+\quad Kinematics   & Study of the \emph{motion} of the body \\[2pt]
+\quad Kinetics     & Study of the \emph{forces} causing the motion \\
+\bottomrule
+\end{tabular}
+ 
 
-Use \verb|enumerate| similarly:
-\begin{enumerate}[nosep]
-    \item First step
-    \item Second step
+
+\subsection*{Problem Solving Approach}
+\begin{enumerate}[leftmargin=1.6em, itemsep=2pt]
+  \item Read the problem carefully.
+  \item Draw any necessary diagram (\emph{free-body diagram}).
+  \item Establish a coordinate system and apply the relevant principles
+        (e.g.\ $\Sigma F = ma, \ldots$).
+  \item Solve the equation algebraically, then apply a consistent set of units,
+        and finally complete the solution numerically.
+  \item Study the answer using technical judgement.
 \end{enumerate}
 
-\subsection*{Working It Out}
+\subsection*{A Little Bit of Math: Integration}
+% The integration example with two methods
+\textbf{Example.} Let $v = \dfrac{dx}{dt}$. Calculate $x(t)$ if $v(t) = 2t$ and $x(1) = 3$.
+ 
+\medskip
+\begin{minipage}[t]{0.48\textwidth}
+\subsubsection*{Method 1 — Indefinite integral}
 \[
-\text{Formula here}
+  \frac{dx}{dt} = 2t \;\Rightarrow\; x(t) = t^2 + C
 \]
-
-\subsection*{Example}
-\textbf{Example:} Description.
-
+Apply initial condition $x(1)=3$:
+\[
+  3 = 1^2 + C \;\Rightarrow\; C = 2
+\]
+\begin{keybox}
+\[x(t) = t^2 + 2\]
+\end{keybox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\subsubsection*{Method 2 — Definite integral}
+\[
+  dx = 2t\,dt
+\]
+\[
+  \int_{3}^{x} dx = \int_{1}^{t} 2t'\,dt'
+\]
+\[
+  x - 3 = \bigl[t'^2\bigr]_{1}^{t} = t^2 - 1
+\]
+\begin{keybox}
+\[x(t) = t^2 + 2\]
+\end{keybox}
+\end{minipage}
 
 \section*{12.2: Rectilinear Motion}
 % Content goes here.
