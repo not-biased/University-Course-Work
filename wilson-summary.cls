@@ -14,6 +14,21 @@
 \RequirePackage{bm}
 \RequirePackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning}
+% ── TikZ style definitions ──
+\colorlet{accent}{blue!60!black}
+\colorlet{boxbg}{gray!10}
+\colorlet{midgray}{gray!60}
+
+\tikzset{
+  axis/.style      = {->, thick},
+  thinaxis/.style  = {->, thin},
+  dot/.style       = {circle, fill, inner sep=1.5pt},
+  vector/.style    = {->, thick, color=accent},
+  curve/.style     = {thick, color=accent},
+  label/.style     = {font=\small},
+  smalllabel/.style= {font=\footnotesize},
+  dashed line/.style = {dashed, thin, gray}
+}
 
 % In the .cls:
 \newcommand{\chaptertitle}[1]{\def\@chaptertitle{#1}}
