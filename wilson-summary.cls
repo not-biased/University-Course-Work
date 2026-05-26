@@ -19,7 +19,7 @@
 \usetikzlibrary{shapes,arrows,positioning}
 % ── TikZ style definitions ──
 \colorlet{accent}{blue!60!black}
-
+\colorlet{boxbg}{gray!10}
 \colorlet{midgray}{gray!60}
 
 \tikzset{
