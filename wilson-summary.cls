@@ -5,6 +5,8 @@
 % 1. Load the base class
 \LoadClass[11pt]{article}
 \RequirePackage[margin=0.8in]{geometry}
+\setlength{\headheight}{14pt}
+\addtolength{\topmargin}{-2pt}
 \RequirePackage{amsmath, amssymb}
 \RequirePackage{booktabs}
 \RequirePackage{array}
@@ -17,6 +19,7 @@
 \usetikzlibrary{shapes,arrows,positioning}
 % ── TikZ style definitions ──
 \colorlet{accent}{blue!60!black}
+
 \colorlet{midgray}{gray!60}
 
 \tikzset{
