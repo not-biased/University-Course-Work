@@ -1,0 +1,284 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{bm}
+
+% Header and Footer
+\pagestyle{fancy}
+\setlength{\headheight}{13.6pt}
+\fancyhf{}
+\fancyhead[C]{\textbf{Chapter 4: Commonly Used Distributions Summary Notes}}
+\fancyfoot[C]{CEE 305 - Spring 2026}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\begin{document}
+
+% ==========================================
+\section*{Introduction to Probability Distributions}
+% ==========================================
+This chapter covers the most commonly used probability distributions in statistics and engineering applications. Distributions are divided into two main categories: \textbf{discrete} and \textbf{continuous} random variables.
+
+\subsection*{Discrete Random Variables}
+Random variables that take on only a finite or countable number of values.
+
+\textbf{Three Key Discrete Distributions:}
+\begin{enumerate}[nosep]
+    \item Binomial Distribution
+    \item Poisson Distribution
+    \item Hyper-geometric Distribution (not covered in detail here)
+\end{enumerate}
+All of these build upon the foundation of the \textbf{Bernoulli random variable}.
+
+% ==========================================
+\section*{Section 4.1: The Bernoulli Distribution}
+% ==========================================
+\textbf{Definition:} A Bernoulli trial is an experiment with exactly two possible outcomes:
+\begin{itemize}[nosep]
+    \item \textbf{Success} (labeled as 1) with probability \(p\)
+    \item \textbf{Failure} (labeled as 0) with probability \(1-p\)
+\end{itemize}
+
+\textbf{Notation:} \(X \sim \text{Bernoulli}(p)\)
+
+\textbf{Probability Mass Function (PMF):}
+\[
+p(0) = P(X=0) = 1-p,\qquad p(1)=P(X=1)=p,\qquad p(x)=0 \text{ otherwise}
+\]
+
+\textbf{Mean and Variance:}
+\[
+\mu_X = p,\qquad \sigma_X^2 = p(1-p)
+\]
+
+\textbf{Examples:} Coin toss (heads = success), selecting a defective component from a population.
+
+% ==========================================
+\section*{Section 4.2: The Binomial Distribution}
+% ==========================================
+\textbf{Definition:} A binomial random variable counts the number of successes in \(n\) independent Bernoulli trials.
+
+\textbf{Conditions:}
+\begin{enumerate}[nosep]
+    \item Fixed number of trials (\(n\) identical trials)
+    \item Two outcomes per trial (success/failure)
+    \item Constant probability of success \(p\)
+    \item Trials are independent
+    \item \(X\) = number of successes in \(n\) trials
+\end{enumerate}
+
+\textbf{Notation:} \(X \sim \text{Bin}(n,p)\)
+
+\textbf{Probability Mass Function:}
+\[
+P(X=x) = \binom{n}{x} p^x (1-p)^{n-x},\quad x=0,1,\dots,n
+\]
+where \(\binom{n}{x} = \frac{n!}{x!(n-x)!}\).
+
+\textbf{Mean and Variance:}
+\[
+\mu_X = np,\qquad \sigma_X^2 = np(1-p) = npq\;\;(q=1-p)
+\]
+
+\textbf{Important Property:} A binomial random variable is the sum of \(n\) independent Bernoulli(\(p\)) variables: \(X = Y_1 + \cdots + Y_n\).
+
+\textbf{Sampling Rule of Thumb:} The binomial distribution can be used when sampling from a finite population \textbf{if the sample size is no more than 5\% of the population}.
+
+\subsection*{Sample Proportion}
+If \(X \sim \text{Bin}(n,p)\), then the sample proportion is \(\hat{p} = X/n\).
+\begin{itemize}[nosep]
+    \item \textbf{Unbiased:} \(\mu_{\hat{p}} = p\)
+    \item \textbf{Standard error:} \(\sigma_{\hat{p}} = \sqrt{p(1-p)/n}\)
+    \item \textbf{Estimated standard error:} \(\hat{\sigma}_{\hat{p}} = \sqrt{\hat{p}(1-\hat{p})/n}\)
+\end{itemize}
+
+% ==========================================
+\section*{Section 4.3: The Poisson Distribution}
+% ==========================================
+\textbf{Definition:} Models the number of occurrences of an event in a fixed unit of time or space.
+
+\textbf{Applications:}
+\begin{itemize}[nosep]
+    \item Number of phone calls per hour
+    \item Number of machine breakdowns per day
+    \item Number of traffic accidents per week
+    \item Number of particles in a volume of liquid
+\end{itemize}
+
+\textbf{Key Concept:} The Poisson distribution approximates the binomial when \(n\) is large, \(p\) is small, and \(\lambda = np\) is moderate.
+
+\textbf{Notation:} \(X \sim \text{Poisson}(\lambda)\), \(\lambda > 0\) (rate parameter).
+
+\textbf{Probability Mass Function:}
+\[
+P(X=x) = \frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\dots
+\]
+
+\textbf{Mean and Variance:}
+\[
+\mu_X = \lambda,\qquad \sigma_X^2 = \lambda
+\]
+(Unique property: mean equals variance.)
+
+\subsection*{Estimating the Rate Parameter}
+If events are observed for \(t\) units, and \(X \sim \text{Poisson}(\lambda t)\), then:
+\[
+\hat{\lambda} = \frac{X}{t},\qquad \mu_{\hat{\lambda}} = \lambda,\qquad \sigma_{\hat{\lambda}} = \sqrt{\frac{\lambda}{t}},\qquad \hat{\sigma}_{\hat{\lambda}} = \sqrt{\frac{\hat{\lambda}}{t}}
+\]
+
+% ==========================================
+\section*{Section 4.5: The Normal Distribution}
+% ==========================================
+\textbf{Definition:} The normal (Gaussian) distribution is symmetric and bell-shaped. It is the most important continuous distribution in statistics.
+
+\textbf{Notation:} \(X \sim N(\mu,\sigma^2)\), where \(\mu\) is the mean (any real) and \(\sigma^2>0\) is the variance.
+
+\textbf{Probability Density Function (PDF):}
+\[
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-(x-\mu)^2/(2\sigma^2)},\quad -\infty < x < \infty
+\]
+
+\textbf{Mean and Variance:}
+\[
+\mu_X = \mu,\qquad \sigma_X^2 = \sigma^2
+\]
+
+\textbf{The 68-95-99.7\% Rule (Empirical Rule):}
+\begin{itemize}[nosep]
+    \item 68\% of data within \(\mu \pm \sigma\)
+    \item 95\% of data within \(\mu \pm 2\sigma\)
+    \item 99.7\% of data within \(\mu \pm 3\sigma\)
+\end{itemize}
+
+\subsection*{The Standard Normal Distribution}
+Convert to \(z\)-scores: \(z = \frac{x-\mu}{\sigma}\). Then \(Z \sim N(0,1)\).
+
+\textbf{PDF of Standard Normal:}
+\[
+f(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2},\quad -\infty < z < \infty
+\]
+
+\textbf{Properties:} Symmetric about 0, mean 0, variance 1, total area = 1.
+
+\textbf{Finding Probabilities Using the z-Table (Table A.2):}
+\begin{enumerate}[nosep]
+    \item Convert \(x\) to \(z\)
+    \item Find area to left of \(z\) in the table
+    \item Area to right = \(1 - \text{area left}\)
+    \item Area between \(z_1\) and \(z_2\) = \(\text{area left of }z_2 - \text{area left of }z_1\)
+\end{enumerate}
+
+\textbf{Working Backwards (Percentiles):} To find the \(z\)-score for the \(p\)th percentile, locate area \(p\) in the table body and read the corresponding \(z\).
+
+% ==========================================
+\section*{Linear Combinations of Normal Random Variables}
+% ==========================================
+\textbf{Single Linear Transformation:}
+If \(X \sim N(\mu,\sigma^2)\) and \(a \neq 0, b\) are constants:
+\[
+aX + b \sim N(a\mu + b,\; a^2\sigma^2)
+\]
+
+\textbf{Linear Combinations:}
+If \(X_1,\dots,X_n\) are independent normal, then for constants \(c_i\):
+\[
+\sum c_i X_i \sim N\left(\sum c_i\mu_i,\; \sum c_i^2\sigma_i^2\right)
+\]
+
+\textbf{Important Special Cases:}
+\begin{itemize}[nosep]
+    \item Sample mean: \(\bar{X} \sim N(\mu,\; \sigma^2/n)\)
+    \item Sum of two independent normals: \(X+Y \sim N(\mu_X+\mu_Y,\; \sigma_X^2+\sigma_Y^2)\)
+    \item Difference of two independent normals: \(X-Y \sim N(\mu_X-\mu_Y,\; \sigma_X^2+\sigma_Y^2)\)
+\end{itemize}
+
+% ==========================================
+\section*{Additional Key Concepts}
+% ==========================================
+\subsection*{Probability Plots}
+Used to assess distributional fit.
+\begin{enumerate}[nosep]
+    \item Sort data in ascending order
+    \item Assign probabilities \((i-0.5)/n\) to each value
+    \item Plot observed values against theoretical quantiles
+    \item If approximately linear, the distribution is a good fit
+\end{enumerate}
+
+\subsection*{Central Limit Theorem (CLT)}
+Let \(X_1,\dots,X_n\) be a random sample from any population with mean \(\mu\) and variance \(\sigma^2\). For large \(n\):
+\[
+\bar{X} \approx N\left(\mu,\frac{\sigma^2}{n}\right),\qquad S_n = \sum X_i \approx N(n\mu, n\sigma^2)
+\]
+\textbf{Rule of Thumb:} CLT is good for \(n>30\) for most populations.
+
+\subsection*{Normal Approximations}
+\begin{itemize}[nosep]
+    \item \textbf{To Binomial:} If \(X\sim\text{Bin}(n,p)\) with \(np>10\) and \(n(1-p)>10\):
+    \[
+    X \approx N(np, np(1-p)),\qquad \hat{p} \approx N\left(p,\frac{p(1-p)}{n}\right)
+    \]
+    \item \textbf{To Poisson:} If \(X\sim\text{Poisson}(\lambda)\) with \(\lambda>10\):
+    \[
+    X \approx N(\lambda, \lambda)
+    \]
+\end{itemize}
+
+\subsection*{Simulation}
+Process of generating random numbers to model real phenomena:
+\begin{enumerate}[nosep]
+    \item Generate random samples from specified distributions
+    \item Count occurrences of events of interest
+    \item Estimate probabilities by relative frequencies
+\end{enumerate}
+
+% ==========================================
+\section*{Summary Table of Distributions}
+% ==========================================
+{\small
+\begin{center}
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Distribution} & \textbf{Type} & \textbf{Parameters} & \textbf{PMF/PDF} & \textbf{Mean} & \textbf{Variance} \\
+\midrule
+Bernoulli & Discrete & \(p\) & \(P(X=x)=p^x(1-p)^{1-x}\) & \(p\) & \(p(1-p)\) \\
+Binomial & Discrete & \(n,p\) & \(P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}\) & \(np\) & \(np(1-p)\) \\
+Poisson & Discrete & \(\lambda\) & \(P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
+Normal & Continuous & \(\mu,\sigma^2\) & \(f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}\) & \(\mu\) & \(\sigma^2\) \\
+Standard Normal & Continuous & \(0,1\) & \(f(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}\) & \(0\) & \(1\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+% ==========================================
+\section*{Key Terminology}
+% ==========================================
+\begin{itemize}[nosep]
+    \item \textbf{Bernoulli Trial:} An experiment with two possible outcomes (success/failure).
+    \item \textbf{Binomial Distribution:} Distribution of the number of successes in \(n\) independent Bernoulli trials.
+    \item \textbf{Poisson Distribution:} Distribution of the number of events in a fixed interval of time or space.
+    \item \textbf{Normal Distribution:} Continuous, symmetric, bell-shaped distribution.
+    \item \textbf{Standard Normal Distribution:} Normal distribution with mean 0 and variance 1.
+    \item \textbf{z-score:} Number of standard deviations an observation is from the mean.
+    \item \textbf{Central Limit Theorem (CLT):} The sampling distribution of the sample mean approaches normality as sample size increases.
+    \item \textbf{Probability Plot:} Graphical tool to assess whether a sample comes from a specific distribution.
+    \item \textbf{Simulation:} Using random number generation to model and analyze real-world processes.
+\end{itemize}
+
+% ==========================================
+\section*{Important Notes}
+% ==========================================
+\begin{itemize}[nosep]
+    \item The Poisson approximation to the binomial works well when \(n\) is large, \(p\) is small, and \(np\) is moderate (e.g., \(n \ge 20\), \(p \le 0.05\)).
+    \item The normal approximation to the binomial is good when both \(np\) and \(n(1-p)\) exceed 10.
+    \item The Central Limit Theorem applies to any population, regardless of its distribution, provided the sample size is sufficiently large.
+    \item For normal probability plots, strong curvature indicates departure from normality; outliers appear as points far from the line.
+    \item The mean and variance of the sample proportion are derived directly from the binomial distribution.
+\end{itemize}
+
+\end{document}

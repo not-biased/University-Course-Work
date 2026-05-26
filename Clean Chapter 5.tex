@@ -1,0 +1,270 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+
+% Header and Footer
+\pagestyle{fancy}
+\setlength{\headheight}{13.6pt}
+\fancyhf{}
+\fancyhead[C]{\textbf{Chapter 5: Confidence Intervals Summary Notes}}
+\fancyfoot[C]{CEE 305 - Spring 2026}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\begin{document}
+
+% ==========================================
+\section*{Introduction to Confidence Intervals}
+% ==========================================
+\textbf{Key Concept:} A point estimate is almost never exactly equal to the true parameter value. A confidence interval (CI) provides a range of plausible values for an unknown population parameter and quantifies the reliability of the estimate.
+
+\begin{itemize}[nosep]
+    \item \textbf{Point Estimator Properties:} An estimator is \textbf{unbiased} if the mean of its sampling distribution equals the parameter of interest. We prefer the unbiased estimator with the smallest variability.
+    \item \textbf{Confidence Level:} A level $100(1 - \alpha)\%$ CI is computed by a method that, in the long run, covers the true parameter a proportion $1 - \alpha$ of the time. It describes the method's reliability, not the probability that the parameter lies in a specific computed interval.
+    \item \textbf{Margin of Error:} $\pm z_{\alpha/2} \sigma_{\bar{X}}$ (or its $t$-distribution equivalent) determines the interval width. Greater confidence leads to wider, less precise intervals.
+\end{itemize}
+
+% ==========================================
+\section*{Section 5.1: Large-Sample CI for a Population Mean ($\mu$)}
+% ==========================================
+\textbf{Conditions:} Large random sample ($n \geq 30$) from any population; $\bar{X}$ is approximately normal by the Central Limit Theorem. $\sigma$ can be replaced with $s$.
+
+\textbf{General Formula:}
+\[\bar{X} \pm z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}\]
+
+\textbf{Common Confidence Levels:}
+\begin{center}
+\begin{tabular}{c|c|c}
+\toprule
+\textbf{Confidence Level} & $\bm{\alpha}$ & $\bm{z_{\alpha/2}}$ \\
+\midrule
+68\%  & 0.32 & 1.000 \\
+90\%  & 0.10 & 1.645 \\
+95\%  & 0.05 & 1.960 \\
+99\%  & 0.01 & 2.576 \\
+99.7\% & 0.003 & 3.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{One-Sided Confidence Bounds:}
+\begin{itemize}[nosep]
+    \item Lower Bound: $\bar{X} - z_{\alpha} \cdot \frac{s}{\sqrt{n}}$
+    \item Upper Bound: $\bar{X} + z_{\alpha} \cdot \frac{s}{\sqrt{n}}$
+\end{itemize}
+
+\textbf{Sample Size for Specified Width $E$:}
+\[n = \left( \frac{z_{\alpha/2} \cdot \sigma}{E} \right)^2 \quad \text{(Always round up)}\]
+
+% ==========================================
+\section*{Section 5.2: Confidence Intervals for Proportions ($p$)}
+% ==========================================
+\textbf{Conditions:} Large number of independent Bernoulli trials. A modified proportion $\tilde{p}$ is recommended for better performance.
+
+\textbf{Definitions:}
+\[\tilde{n} = n + 4, \qquad \tilde{p} = \frac{X + 2}{\tilde{n}}\]
+where $X$ = number of successes in $n$ trials.
+
+\textbf{General Formula:}
+\[\tilde{p} \pm z_{\alpha/2} \sqrt{\frac{\tilde{p}(1 - \tilde{p})}{\tilde{n}}}\]
+
+\textit{Note:} If the lower limit < 0, replace with 0. If the upper limit > 1, replace with 1.
+
+\textbf{One-Sided Confidence Bounds:}
+\begin{itemize}[nosep]
+    \item Lower Bound: $\tilde{p} - z_{\alpha} \sqrt{\frac{\tilde{p}(1 - \tilde{p})}{\tilde{n}}}$
+    \item Upper Bound: $\tilde{p} + z_{\alpha} \sqrt{\frac{\tilde{p}(1 - \tilde{p})}{\tilde{n}}}$
+\end{itemize}
+
+\textbf{Traditional Method:} Requires at least 10 successes and 10 failures. Uses $\hat{p} = X/n$ directly.
+
+% ==========================================
+\section*{Section 5.3: Small-Sample CI for a Population Mean ($\mu$)}
+% ==========================================
+\textbf{Conditions:} Small sample ($n < 30$) drawn from an \textbf{approximately normal} population. The sample must be free of outliers. Uses the Student's $t$ distribution with $\nu = n - 1$ degrees of freedom.
+
+\textbf{General Formula:}
+\[\bar{X} \pm t_{n-1, \alpha/2} \cdot \frac{s}{\sqrt{n}}\]
+
+\textbf{One-Sided Confidence Bounds:}
+\begin{itemize}[nosep]
+    \item Lower Bound: $\bar{X} - t_{n-1, \alpha} \cdot \frac{s}{\sqrt{n}}$
+    \item Upper Bound: $\bar{X} + t_{n-1, \alpha} \cdot \frac{s}{\sqrt{n}}$
+\end{itemize}
+
+\textit{Note:} If the population standard deviation $\sigma$ is known, use the $z$-table method from Section 5.1.
+
+% ==========================================
+\section*{Section 5.4: Large-Sample CI for Difference Between Two Means ($\mu_X - \mu_Y$)}
+% ==========================================
+\textbf{Conditions:} Two independent, large random samples from any populations. $\sigma_X$ and $\sigma_Y$ can be replaced with $s_X$ and $s_Y$.
+
+\textbf{General Formula:}
+\[\bar{X} - \bar{Y} \pm z_{\alpha/2} \sqrt{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}\]
+
+% ==========================================
+\section*{Section 5.5: CI for Difference Between Two Proportions ($p_X - p_Y$)}
+% ==========================================
+\textbf{Conditions:} Two independent sets of Bernoulli trials. Use modified counts and sample sizes.
+
+\textbf{Definitions:}
+\begin{align*}
+    \tilde{n}_X = n_X + 2, &\quad \tilde{p}_X = \frac{X + 1}{\tilde{n}_X} \\
+    \tilde{n}_Y = n_Y + 2, &\quad \tilde{p}_Y = \frac{Y + 1}{\tilde{n}_Y}
+\end{align*}
+
+\textbf{General Formula:}
+\[\tilde{p}_X - \tilde{p}_Y \pm z_{\alpha/2} \sqrt{\frac{\tilde{p}_X(1 - \tilde{p}_X)}{\tilde{n}_X} + \frac{\tilde{p}_Y(1 - \tilde{p}_Y)}{\tilde{n}_Y}}\]
+
+\textit{Note:} If the lower limit < -1, replace with -1. If the upper limit > 1, replace with 1.
+
+% ==========================================
+\section*{Section 5.6: Small-Sample CI for Difference Between Two Means ($\mu_X - \mu_Y$)}
+% ==========================================
+\textbf{Conditions:} Two independent, small, random samples from approximately normal populations.
+
+\textbf{Case 1: Unequal Variances (Recommended best practice):}
+\[\bar{X} - \bar{Y} \pm t_{V, \alpha/2} \sqrt{\frac{s_X^2}{n_X} + \frac{s_Y^2}{n_Y}}\]
+The number of degrees of freedom, $V$, is given by (rounded down to the nearest integer):
+\[V = \frac{\left( \frac{s_X^2}{n_X} + \frac{s_Y^2}{n_Y} \right)^2}{\frac{(s_X^2 / n_X)^2}{n_X - 1} + \frac{(s_Y^2 / n_Y)^2}{n_Y - 1}}\]
+
+\textbf{Case 2: Equal Variances (Use only if population variances are known/certain to be equal):}
+\[\bar{X} - \bar{Y} \pm t_{n_X + n_Y - 2, \alpha/2} \cdot S_p \sqrt{\frac{1}{n_X} + \frac{1}{n_Y}}\]
+where the pooled standard deviation is:
+\[S_p = \sqrt{ \frac{(n_X - 1)s_X^2 + (n_Y - 1)s_Y^2}{n_X + n_Y - 2} }\]
+
+% ==========================================
+\section*{Section 5.7: Confidence Intervals with Paired Data ($\mu_D = \mu_X - \mu_Y$)}
+% ==========================================
+\textbf{Conditions:} Paired observations $(X_1, Y_1), \dots, (X_n, Y_n)$. Compute $D_i = X_i - Y_i$. The $D_i$'s form a single random sample of differences.
+
+\textbf{Large Sample:}
+\[\bar{D} \pm z_{\alpha/2} \cdot \frac{s_D}{\sqrt{n}}\]
+
+\textbf{Small Sample (Population of differences approx. normal):}
+\[\bar{D} \pm t_{n-1, \alpha/2} \cdot \frac{s_D}{\sqrt{n}}\]
+
+% ==========================================
+\section*{Section 5.9: Prediction and Tolerance Intervals}
+% ==========================================
+\textbf{Conditions:} The population is known to be normal.
+
+\textbf{Prediction Interval (for a single future observation $Y$):}
+\[\bar{X} \pm t_{n-1, \alpha/2} \cdot s \sqrt{1 + \frac{1}{n}}\]
+\textit{One-sided bounds:} Replace $t_{\alpha/2}$ with $t_\alpha$.
+
+\textbf{Tolerance Interval (to contain $100(1-\gamma)\%$ of the population with $100(1-\alpha)\%$ confidence):}
+\[\bar{X} \pm k_{n,\alpha,\gamma} \cdot s\]
+The factor $k_{n,\alpha,\gamma}$ is obtained from tolerance interval tables (Table A.4).
+
+% ==========================================
+\section*{Summary Table of Key Formulas}
+% ==========================================
+{\small
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.32\linewidth} c}
+\toprule
+\textbf{Parameter} & \textbf{Confidence Interval Formula} \\
+\midrule
+Mean $\mu$ (large $n$) & $\bar{X} \pm z_{\alpha/2} \frac{s}{\sqrt{n}}$ \\
+Mean $\mu$ (small $n$) & $\bar{X} \pm t_{n-1,\alpha/2} \frac{s}{\sqrt{n}}$ \\
+Proportion $p$ & $\tilde{p} \pm z_{\alpha/2} \sqrt{\frac{\tilde{p}(1-\tilde{p})}{\tilde{n}}}$ \\
+Diff. in Means $\mu_X-\mu_Y$ (large $n$) & $\bar{X} - \bar{Y} \pm z_{\alpha/2} \sqrt{\frac{s_X^2}{n_X} + \frac{s_Y^2}{n_Y}}$ \\
+Diff. in Means $\mu_X-\mu_Y$ (small $n$, unequal var.) & $\bar{X} - \bar{Y} \pm t_{V,\alpha/2} \sqrt{\frac{s_X^2}{n_X} + \frac{s_Y^2}{n_Y}}$ \\
+Diff. in Means $\mu_X-\mu_Y$ (small $n$, equal var.) & $\bar{X} - \bar{Y} \pm t_{n_X+n_Y-2,\alpha/2} \, S_p \sqrt{\frac{1}{n_X} + \frac{1}{n_Y}}$ \\
+Diff. in Proportions $p_X - p_Y$ & $\tilde{p}_X - \tilde{p}_Y \pm z_{\alpha/2} \sqrt{\frac{\tilde{p}_X(1-\tilde{p}_X)}{\tilde{n}_X} + \frac{\tilde{p}_Y(1-\tilde{p}_Y)}{\tilde{n}_Y}}$ \\
+Paired Mean $\mu_D$ (small $n$) & $\bar{D} \pm t_{n-1,\alpha/2} \frac{s_D}{\sqrt{n}}$ \\
+Prediction Interval (single $Y$) & $\bar{X} \pm t_{n-1,\alpha/2} \, s \sqrt{1 + \frac{1}{n}}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+% ==========================================
+\section*{Definition of Symbols in Confidence Interval Formulas}
+% ==========================================
+The following table defines every symbol that appears in the summary table above.
+
+{\small
+\begin{center}
+\begin{tabular}{l l}
+\toprule
+\textbf{Symbol} & \textbf{Definition} \\
+\midrule
+$\mu$ & Population mean \\
+$\bar{X}$ & Sample mean \\
+$s$ & Sample standard deviation \\
+$n$ & Sample size \\
+$z_{\alpha/2}$ & Upper $\alpha/2$ critical value of the standard normal distribution \\
+$t_{n-1,\alpha/2}$ & Upper $\alpha/2$ critical value of Student's $t$ with $n-1$ df \\
+$\tilde{p}$ & Modified sample proportion: $\tilde{p} = (X+2)/(n+4)$, $X$ = number of successes \\
+$\tilde{n}$ & Modified sample size: $\tilde{n} = n+4$ \\
+$\mu_X - \mu_Y$ & Difference between two population means \\
+$\bar{Y}$ & Sample mean from second population \\
+$s_X$, $s_Y$ & Sample standard deviations from first and second populations \\
+$n_X$, $n_Y$ & Sample sizes from first and second populations \\
+$t_{V,\alpha/2}$ & $t$ critical value with $V$ degrees of freedom (Welch's approximation) \\
+$V$ & Welch–Satterthwaite degrees of freedom (see formula in Section 5.6) \\
+$S_p$ & Pooled standard deviation (equal variances assumed) \\
+$p_X - p_Y$ & Difference between two population proportions \\
+$\tilde{p}_X$, $\tilde{p}_Y$ & Modified proportions: $(X+1)/(n_X+2)$, $(Y+1)/(n_Y+2)$ \\
+$\tilde{n}_X$, $\tilde{n}_Y$ & Modified sample sizes: $n_X+2$, $n_Y+2$ \\
+$\mu_D$ & Population mean of paired differences $D = X-Y$ \\
+$\bar{D}$ & Sample mean of paired differences \\
+$s_D$ & Sample standard deviation of paired differences \\
+$Y$ (in Prediction Interval) & A single future observation from the same population \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+\vspace{0.2in}
+\textit{Note:} The significance level $\alpha$ is $1 - \text{confidence level}$. For a 95\% CI, $\alpha = 0.05$.
+
+% ==========================================
+\section*{Key Terminology}
+% ==========================================
+\begin{itemize}[nosep]
+    \item \textbf{Confidence Interval (CI):} An interval estimate of a population parameter.
+    \item \textbf{Confidence Level:} The success rate of the method used to construct the interval.
+    \item \textbf{Unbiased Estimator:} An estimator that does not systematically over- or underestimate the target parameter.
+    \item \textbf{Point Estimate:} A single value calculated from a sample used to estimate a population parameter.
+    \item \textbf{Margin of Error:} The $\pm$ term that defines the width of the confidence interval.
+    \item \textbf{Student's $t$ distribution:} A probability distribution used for small-sample inference when the population standard deviation is estimated by $s$.
+    \item \textbf{Degrees of Freedom ($\nu$):} A parameter of the $t$ distribution, typically related to the sample size minus the number of estimated parameters.
+    \item \textbf{Pooled Standard Deviation ($S_p$):} A combined estimate of the common population standard deviation when two population variances are assumed equal.
+    \item \textbf{Prediction Interval:} An interval likely to contain the value of a single future observation from the population.
+    \item \textbf{Tolerance Interval:} An interval likely to contain a specified proportion of the population with a stated confidence.
+\end{itemize}
+
+% ==========================================
+\section*{Interpretation of Intervals}
+% ==========================================
+\subsection*{Confidence Interval (CI)}
+A $100(1-\alpha)\%$ confidence interval provides a range of plausible values.  
+\textbf{Correct interpretation:} “We are $100(1-\alpha)\%$ confident that the true parameter lies between the bounds.” This refers to the long‑run reliability of the method.
+
+\subsection*{Prediction Interval (PI)}
+Contains a \textit{single future observation}. Always wider than a CI for the mean because it includes individual scatter.
+
+\subsection*{Tolerance Interval (TI)}
+Captures a specified proportion $\gamma$ of the \textit{entire population} with confidence $1-\alpha$. Widest of the three.
+
+% ==========================================
+\section*{Important Notes}
+% ==========================================
+\begin{itemize}[nosep]
+    \item For large samples ($n \geq 30$), the $t$ and $z$ distributions are virtually identical; the normal curve can be used.
+    \item In small-sample inference for means, the population must be approximately normal. Check for outliers.
+    \item Unless certain population variances are equal, use the unequal-variances formula.
+    \item Paired data methods are more powerful than independent samples methods when natural pairing exists.
+    \item Prediction intervals are always wider than corresponding confidence intervals due to the $\sqrt{1+1/n}$ factor.
+\end{itemize}
+
+\end{document}

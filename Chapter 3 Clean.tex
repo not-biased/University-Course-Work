@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{bm}
+
+% Header and Footer
+\pagestyle{fancy}
+\setlength{\headheight}{13.6pt}
+\fancyhf{}
+\fancyhead[C]{\textbf{Chapter 3: Propagation of Error Summary Notes}}
+\fancyfoot[C]{CEE 305 - Spring 2026}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\begin{document}
+
+% ==========================================
+\section*{Introduction to Error Propagation}
+% ==========================================
+\textbf{Key Concept:} Any measuring procedure contains error. Measured values generally differ from the true values being measured, and these errors produce errors in calculated values (such as the mean).
+
+\begin{quote}
+\textbf{Definition:} When error in measurement produces error in calculated values, we say that \textbf{error is propagated} from the measurements to the calculated value.
+\end{quote}
+
+% ==========================================
+\section*{Section 3.1: Measurement Error}
+% ==========================================
+\textbf{Basic Definition:} The \textbf{error} in a measured value is the difference between a measured value and the true value.
+
+\textbf{Components of Error:}
+\begin{itemize}[nosep]
+    \item \textbf{Systematic error (bias)} – The part of the error that is the same for every measurement.
+    \item \textbf{Random error} – Error that varies from measurement to measurement and averages to zero in the long run.
+\end{itemize}
+
+\textbf{Mathematical Representation:}
+\[
+\text{Measured value} = \text{true value} + \text{bias} + \text{random error}
+\]
+
+\textbf{Key Properties of Measuring Processes:}
+\begin{itemize}[nosep]
+    \item \textbf{Accuracy} – Determined by bias (smaller bias = more accurate).
+    \item \textbf{Unbiased process} – When bias = 0.
+    \item \textbf{Precision} – The degree to which repeated measurements tend to agree (higher precision = measurements cluster closely).
+\end{itemize}
+
+\subsection*{Statistical Characterization of Measurements}
+A measured value is a random variable with:
+\begin{itemize}[nosep]
+    \item \textbf{Mean (\(\mu\))} – The average value over many measurements.
+    \item \textbf{Standard deviation (\(\sigma\))} – Measures the spread of measurements.
+\end{itemize}
+
+\textbf{Bias and Uncertainty:}
+\[
+\text{Bias} = \mu - \text{true value},\qquad \text{Uncertainty} = \sigma
+\]
+\begin{itemize}[nosep]
+    \item Smaller bias \(\rightarrow\) more accurate process.
+    \item Smaller uncertainty \(\rightarrow\) more precise process.
+\end{itemize}
+
+\subsection*{Estimating Bias and Uncertainty}
+Given independent measurements \(X_1, X_2, \ldots, X_n\) of the same quantity:
+\begin{itemize}[nosep]
+    \item \textbf{Estimate uncertainty} using sample standard deviation:
+    \[
+    s = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2}
+    \]
+    \item \textbf{Estimate bias} (if true value is known):
+    \[
+    \text{Bias} \approx \bar{X} - \text{true value}
+    \]
+    \item \textbf{Note:} If true value is unknown, bias cannot be estimated from repeated measurements alone.
+\end{itemize}
+
+% ==========================================
+\section*{Section 3.2: Linear Combinations of Measurements}
+% ==========================================
+\textbf{Single Measurement Scaled by Constant:}
+If \(X\) is a measurement and \(c\) is a constant:
+\[
+\sigma_{cX} = |c| \sigma_X
+\]
+
+\textbf{Linear Combination of Independent Measurements:}
+If \(X_1, \dots, X_n\) are independent measurements and \(c_1, \dots, c_n\) are constants:
+\[
+\sigma_{c_1X_1 + \cdots + c_nX_n} = \sqrt{c_1^2\sigma_{X_1}^2 + \cdots + c_n^2\sigma_{X_n}^2}
+\]
+
+\subsection*{Repeated Measurements}
+If \(X_1, \dots, X_n\) are \(n\) independent measurements, each with mean \(\mu\) and standard deviation \(\sigma\):
+\[
+\mu_{\bar{X}} = \mu,\qquad \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}
+\]
+\textbf{Interpretation:} The average of \(n\) measurements is more precise than a single measurement by a factor of \(\sqrt{n}\).
+
+\subsection*{Weighted Average for Measurements with Different Uncertainties}
+If \(X\) and \(Y\) are independent measurements of the same quantity, with uncertainties \(\sigma_X\) and \(\sigma_Y\):
+
+The weighted average with the smallest uncertainty is:
+\[
+c_{\text{best}}X + (1 - c_{\text{best}})Y
+\]
+where
+\[
+c_{\text{best}} = \frac{\sigma_Y^2}{\sigma_X^2 + \sigma_Y^2},\qquad 1 - c_{\text{best}} = \frac{\sigma_X^2}{\sigma_X^2 + \sigma_Y^2}
+\]
+
+\subsection*{Linear Combinations of Dependent Measurements}
+If \(X_1, \ldots, X_n\) are measurements (possibly dependent) and \(c_1, \ldots, c_n\) are constants:
+\[
+\sigma_{c_1X_1 + \cdots + c_nX_n} \leq |c_1|\sigma_{X_1} + \cdots + |c_n|\sigma_{X_n}
+\]
+This provides a \textbf{conservative estimate} (upper bound) when dependencies are unknown.
+
+% ==========================================
+\section*{Section 3.3: Uncertainties for Functions of One Measurement}
+% ==========================================
+\textbf{Propagation of Error Formula (One Variable):}
+If \(X\) is a measurement with small uncertainty \(\sigma_X\), and \(U = U(X)\) is a function of \(X\):
+\[
+\sigma_U \approx \left| \frac{dU}{dX} \right| \sigma_X
+\]
+In practice, evaluate \(dU/dX\) at the observed measurement \(X\).
+
+\subsection*{Relative Uncertainty}
+\textbf{Definition:} If \(U\) is a measurement with true value \(\mu_U\) and uncertainty \(\sigma_U\):
+\[
+\text{Relative uncertainty} = \frac{\sigma_U}{\mu_U}
+\]
+\textbf{Properties:}
+\begin{itemize}[nosep]
+    \item Unitless quantity (often expressed as a percentage).
+    \item In practice, \(\mu_U\) is unknown.
+    \item If bias is negligible, estimate relative uncertainty as \(\sigma_U / U\).
+\end{itemize}
+
+\textbf{Two Methods to Find Relative Uncertainty:}
+\begin{enumerate}[nosep]
+    \item Compute \(\sigma_U\) using \(\sigma_U \approx |dU/dX|\sigma_X\), then divide by \(U\).
+    \item Compute \(\ln U\) and find \(\sigma_{\ln U}\) (which equals \(\sigma_U/U\)).
+\end{enumerate}
+
+% ==========================================
+\section*{Section 3.4: Uncertainties for Functions of Several Measurements}
+% ==========================================
+\textbf{Propagation of Error Formula (Multiple Independent Variables):}
+If \(X_1, \ldots, X_n\) are \textbf{independent} measurements with small uncertainties \(\sigma_{X_i}\), and \(U = U(X_1, \ldots, X_n)\):
+\[
+\sigma_U \approx \sqrt{\left(\frac{\partial U}{\partial X_1}\right)^2\sigma_{X_1}^2 + \left(\frac{\partial U}{\partial X_2}\right)^2\sigma_{X_2}^2 + \cdots + \left(\frac{\partial U}{\partial X_n}\right)^2\sigma_{X_n}^2}
+\]
+In practice, evaluate partial derivatives at \((X_1, \ldots, X_n)\).
+
+\textbf{Conservative Estimate for Dependent Measurements:}
+If \(X_1, \ldots, X_n\) are \textbf{dependent} measurements with small uncertainties:
+\[
+\sigma_U \leq \left|\frac{\partial U}{\partial X_1}\right|\sigma_{X_1} + \left|\frac{\partial U}{\partial X_2}\right|\sigma_{X_2} + \cdots + \left|\frac{\partial U}{\partial X_n}\right|\sigma_{X_n}
+\]
+\textit{Note:} This inequality holds in almost all practical situations (may fail if second partial derivatives are quite large).
+
+% ==========================================
+\section*{Common Applications and Examples}
+% ==========================================
+\textbf{Example: Volume of a Sphere} – Given radius \(R\) with uncertainty \(\sigma_R\):
+\[
+V = \frac{4}{3}\pi R^3,\quad \frac{dV}{dR} = 4\pi R^2,\quad \sigma_V = 4\pi R^2\sigma_R
+\]
+
+\textbf{Example: Area of a Rectangle} – Given sides \(X\) and \(Y\) with uncertainties \(\sigma_X\) and \(\sigma_Y\):
+\[
+A = XY,\quad \frac{\partial A}{\partial X} = Y,\quad \frac{\partial A}{\partial Y} = X,\quad \sigma_A = \sqrt{Y^2\sigma_X^2 + X^2\sigma_Y^2}
+\]
+
+% ==========================================
+\section*{Summary Table of Error Propagation Formulas}
+% ==========================================
+{\small
+\begin{center}
+\begin{tabular}{l c}
+\toprule
+\textbf{Situation} & \textbf{Formula} \\
+\midrule
+Single measurement scaled by constant & \(\sigma_{cX} = |c|\sigma_X\) \\
+Linear combination (independent) & \(\sigma_{\sum c_iX_i} = \sqrt{\sum c_i^2\sigma_{X_i}^2}\) \\
+Linear combination (dependent) & \(\sigma_{\sum c_iX_i} \leq \sum |c_i|\sigma_{X_i}\) \\
+Sample mean (\(n\) measurements) & \(\sigma_{\bar{X}} = \sigma/\sqrt{n}\) \\
+Function of one variable & \(\sigma_U \approx |dU/dX|\sigma_X\) \\
+Function of multiple independent variables & \(\sigma_U \approx \sqrt{\sum \left(\frac{\partial U}{\partial X_i}\right)^2\sigma_{X_i}^2}\) \\
+Function of multiple dependent variables & \(\sigma_U \leq \sum \left|\frac{\partial U}{\partial X_i}\right|\sigma_{X_i}\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+% ==========================================
+\section*{Key Terminology}
+% ==========================================
+\begin{itemize}[nosep]
+    \item \textbf{Error:} Difference between measured value and true value.
+    \item \textbf{Bias:} Systematic component of error (constant across measurements).
+    \item \textbf{Random error:} Variable component of error (averages to zero).
+    \item \textbf{Accuracy:} How close measurements are to true value (related to bias).
+    \item \textbf{Precision:} How close repeated measurements are to each other (related to uncertainty).
+    \item \textbf{Uncertainty:} Standard deviation of measurements (\(\sigma\)).
+    \item \textbf{Propagation of error:} How measurement errors affect calculated quantities.
+    \item \textbf{Relative uncertainty:} Uncertainty expressed as a fraction of the value (\(\sigma_U/\mu_U\)).
+\end{itemize}
+
+% ==========================================
+\section*{Important Notes}
+% ==========================================
+\begin{itemize}[nosep]
+    \item All propagation formulas are approximations valid when uncertainties are small.
+    \item Partial derivatives should be evaluated at the measured values.
+    \item For dependent measurements, the sum of absolute values gives a conservative (upper bound) estimate.
+    \item The sample mean reduces uncertainty by a factor of \(\sqrt{n}\) compared to single measurements.
+    \item Weighted averages can minimize uncertainty when combining measurements with different precisions.
+\end{itemize}
+
+\end{document}
