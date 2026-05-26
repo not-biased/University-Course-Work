@@ -1,0 +1,119 @@
+% ==========================================
+% SUMMARY NOTES TEMPLATE
+% For Engineering style notes (compact, with header/footer, booktabs, etc.)
+% Instructions: Replace text in [brackets] with your content.
+% ==========================================
+
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{bm}
+\usepackage{tikz}   % optional, for diagrams
+\usetikzlibrary{shapes,arrows,positioning} % optional
+
+% ==========================================
+% Header and Footer Setup
+% ==========================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\textbf{[Chapter Title Here] Summary Notes}}
+\fancyfoot[C]{[Course Name/Number] - [Semester/Year]}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% ==========================================
+% Document
+% ==========================================
+\begin{document}
+
+% ==========================================
+% Introduction / Overview
+% ==========================================
+\section*{Introduction to [Topic]}
+% Write your introductory paragraph here.
+
+% ==========================================
+% Section 1 (e.g., 1.1)
+% ==========================================
+\section*{Section [Number]: [Title]}
+% Content goes here.
+
+\subsection*{Subsection Title (if needed)}
+Use \verb|itemize| with \verb|[nosep]| for compact lists:
+\begin{itemize}[nosep]
+    \item First item
+    \item Second item
+\end{itemize}
+
+Use \verb|enumerate| similarly:
+\begin{enumerate}[nosep]
+    \item First step
+    \item Second step
+\end{enumerate}
+
+\subsection*{Important Formulas}
+\[
+\text{Formula here}
+\]
+
+\subsection*{Example}
+\textbf{Example:} Description.
+
+% ==========================================
+% Summary Table (optional)
+% ==========================================
+\section*{Summary Table of Key Formulas/Concepts}
+{\small
+\begin{center}
+\begin{tabular}{l c}
+\toprule
+\textbf{Concept} & \textbf{Formula/Description} \\
+\midrule
+Item 1 & Formula 1 \\
+Item 2 & Formula 2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+% ==========================================
+% Definition of Symbols (optional)
+% ==========================================
+\section*{Definition of Symbols}
+{\small
+\begin{center}
+\begin{tabular}{l l}
+\toprule
+\textbf{Symbol} & \textbf{Definition} \\
+\midrule
+$\bar{x}$ & Sample mean \\
+$s$ & Sample standard deviation \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+% ==========================================
+% Key Terminology (required)
+% ==========================================
+\section*{Key Terminology}
+\begin{itemize}[nosep]
+    \item \textbf{Term 1:} Definition.
+    \item \textbf{Term 2:} Definition.
+\end{itemize}
+
+% ==========================================
+% Important Notes (required)
+% ==========================================
+\section*{Important Notes}
+\begin{itemize}[nosep]
+    \item First important note.
+    \item Second important note.
+\end{itemize}
+
+\end{document}
