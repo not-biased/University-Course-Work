@@ -359,8 +359,38 @@ the average velocity, and the average speed.
 %  SECTION 12.3 — ERRATIC RECILINEAR MOTION
 % ══════════════════════════════════════════════════════════════════════════════
 \section*{12.3: Erratic Rectilinear Motion}
+\subsection*{\textcircled{\small 1}\; Definitions}
+\definiton{Erratic motion} means that the motion $(s,v,a)$ \emph{cannot} be described by a
+unique continuous function. Therefore, we use a \textbf{series of functions and/or graphs}.
 
+\subsection*{\textcircled{\small 2}\; Graph Properties}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % ─── s(t) graph ────────────────────────────────
+  \begin{scope}[xshift=0cm]
+    \draw[thinaxis] (0,-0.3) -- (0,2.6) node[above,smalllabel]{$s(t)$};
+    \draw[axis]     (-0.2,0)  -- (3.8,0) node[right,smalllabel]{$t$};
+    % bell-like curve
+    \draw[curve,domain=0:3.4,samples=80]
+      plot (\x, {2.2*\x*exp(-0.7*\x)});
+    % slope indicators
+    \node[dot] at (1.0, 1.37){};
+    \draw[->,midgray,thin] (1.0,1.37) -- +(0.8,0.45)
+      node[right,smalllabel]{$v_2$};
+    \node[dot] at (2.3, 0.95){};
+    \draw[->,midgray,thin] (2.3,0.95) -- +(0.7,-0.35)
+      node[right,smalllabel]{$v$};
+    \node[below right,label] at (2.0,-0.6)
+      {$v = \dfrac{ds}{dt}$ \;$\Rightarrow$ \emph{$v$ is the slope of $s(t)$}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
 
+\[
+  a = \frac{dv}{dt}
+  \;\Rightarrow\;
+  \textit{$a$ is the slope of $v(t)$}
+\]
 
 
 
