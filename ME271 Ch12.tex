@@ -81,26 +81,285 @@ Apply initial condition $x(1)=3$:
 \end{keybox}
 \end{minipage}
 
-\section*{12.2: Rectilinear Motion}
-% Content goes here.
-
-\subsection*{Subsection Title (if needed)}
-Use \verb|itemize| with \verb|[nosep]| for compact lists:
-\begin{itemize}[nosep]
-    \item First item
-    \item Second item
-\end{itemize}
-
-Use \verb|enumerate| similarly:
-\begin{enumerate}[nosep]
-    \item First step
-    \item Second step
-\end{enumerate}
-
-\subsection*{Important Formulas}
+\newpage
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 12.2 — RECTILINEAR KINEMATICS: CONTINUOUS MOTION
+% ══════════════════════════════════════════════════════════════════════════════
+\section*{12.2 \quad Rectilinear Kinematics — Continuous Motion}
+ 
+% ── (1) Assumptions ───────────────────────────────────────────────────────────
+\subsection*{\textcircled{\small 1}\; Assumptions}
+ 
+We model objects as a \emph{particle} located at the centre of mass. The kinematics of a particle is fully defined at any time $t$ by its \textbf{position}, \textbf{velocity}, and \textbf{acceleration}.
+ 
+% ── (2) Definitions ───────────────────────────────────────────────────────────
+\subsection*{\textcircled{\small 2}\; Definitions}
+ 
+\subsubsection*{Position}
+ 
+\begin{center}
+\begin{tikzpicture}
+  \draw[axis] (-0.3,0) -- (5.5,0) node[right,label] {$s$};
+  \node[dot] at (0,0) {};
+  \node[below,smalllabel] at (0,0) {$O$};
+  \node[dot] at (3.2,0) {};
+  \node[below,smalllabel] at (3.2,0) {position};
+  \draw[vector] (0,0.25) -- node[above,smalllabel]{$s$} (3.2,0.25);
+  \node[above right,label] at (3.5,0.15) {$\vec{s}$ or $\vec{r}$ \quad (vector: magnitude + direction)};
+  \node[below right,smalllabel] at (3.5,-0.15) {units: m, in, ft\ldots};
+\end{tikzpicture}
+\end{center}
+ 
+\subsubsection*{Displacement = change in position}
+ 
 \[
-\text{Formula here}
+  \Delta\vec{s} = \vec{s}' - \vec{s} \qquad \text{(vector quantity)}
 \]
+ 
+\begin{center}
+\begin{tikzpicture}
+  \draw[axis] (-0.3,0) -- (5.5,0) node[right,label] {$s$};
+  \node[dot] at (0,0) {}; \node[below,smalllabel] at (0,0) {$O$};
+  \node[dot] at (2.0,0) {}; \node[below,smalllabel] at (2.0,0) {$s$};
+  \node[dot] at (3.8,0) {}; \node[below,smalllabel] at (3.8,0) {$s'$};
+  \draw[vector,color=accent] (2.0,0.3) -- node[above,smalllabel]{$\Delta s$} (3.8,0.3);
+\end{tikzpicture}
+\end{center}
+ 
+\begin{mdframed}[backgroundcolor=boxbg,linecolor=lightgray,linewidth=0.6pt,
+    innerleftmargin=8pt,innerrightmargin=8pt,innertopmargin=4pt,innerbottommargin=4pt]
+\textbf{Displacement $\neq$ Distance.}\;
+Distance $=$ total length travelled by the particle.
+\end{mdframed}
+ 
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % ex 1 — curved path
+  \draw[axis] (-0.3,0.8) -- (5.0,0.8) node[right,smalllabel]{$s$};
+  \node[dot] at (0.5,0.8){}; \node[below,smalllabel] at (0.5,0.8){$s_1$};
+  \node[dot] at (4.0,0.8){}; \node[below,smalllabel] at (4.0,0.8){$s_2$};
+  \draw[curve,bend left=45] (0.5,0.8) to node[above,smalllabel]{distance} (4.0,0.8);
+  \draw[vector] (0.5,0.5) -- node[below,smalllabel]{displacement} (4.0,0.5);
+  \node[left,smalllabel] at (-0.2,0.8) {ex 1};
+ 
+  % ex 2 — back and forth
+  \draw[axis] (-0.3,-0.5) -- (5.0,-0.5) node[right,smalllabel]{$s$};
+  \node[dot] at (0.5,-0.5){}; \node[below,smalllabel] at (0.5,-0.5){$s_1$};
+  \node[dot] at (3.5,-0.5){}; \node[below,smalllabel] at (3.5,-0.5){$s_2$};
+  \draw[vector,color=accent!60] (0.5,-0.3) -- (3.5,-0.3);
+  \draw[vector,color=accent!60] (3.5,-0.3) -- (2.6,-0.3);
+  \node[above,smalllabel] at (2.0,-0.3) {distance};
+  \draw[vector] (0.5,-0.7) -- node[below,smalllabel]{displacement} (2.6,-0.7);
+  \node[left,smalllabel] at (-0.2,-0.5) {ex 2};
+\end{tikzpicture}
+\end{center}
+ 
+\subsubsection*{Velocity}
+ 
+\[
+  v = \frac{ds}{dt} \qquad \vec{v} \text{ is a vector;}\quad |\vec{v}| = \text{speed} \qquad \text{units: mph, m/s, \ldots}
+\]
+ 
+\begin{center}
+\begin{tikzpicture}
+  \draw[axis] (-0.3,0) -- (4.5,0) node[right,label]{$s$};
+  \node[dot] at (1.5,0){}; \node[below,smalllabel] at (1.5,0){};
+  \draw[vector,color=accent] (1.5,0) -- node[above,smalllabel]{$v$} (3.5,0);
+\end{tikzpicture}
+\end{center}
+ 
+\[
+  v_{\text{avg}} = \frac{\Delta s}{\Delta t} \qquad\quad
+  \underbrace{(v_{\text{avg,speed}})}_{\displaystyle\frac{s_T}{\Delta t}}
+  \;\neq\;
+  \underbrace{(v_{\text{avg}})}_{\displaystyle\frac{\Delta s}{\Delta t}}
+\]
+ 
+\subsubsection*{Acceleration}
+ 
+\[
+  a = \frac{dv}{dt} \qquad \vec{a} \text{ is a vector} \qquad \text{units: m/s}^2,\ldots
+\]
+\[
+  a_{\text{avg}} = \frac{\Delta v}{\Delta t}
+\]
+ 
+Since $v = \dfrac{ds}{dt}$,\quad $a = \dfrac{d^2s}{dt^2}$.
+ 
+From $dt = \dfrac{ds}{v} = \dfrac{dv}{a}$:
+ 
+\begin{keybox}
+\[
+  a\,ds = v\,dv
+\]
+\end{keybox}
+ 
+% ── (3) Constant Acceleration ─────────────────────────────────────────────────
+\subsection*{\textcircled{\small 3}\; Constant Acceleration ($a = a_c$)}
+ 
+\subsubsection*{Velocity as a function of time}
+\[
+  a = \frac{dv}{dt} = a_c
+  \;\Rightarrow\;
+  v(t) = a_c t + C
+\]
+At $t=0,\; v = v_0 \;\Rightarrow\; C = v_0$:
+\begin{keybox}
+\[
+  v(t) = a_c t + v_0
+\]
+\end{keybox}
+ 
+\subsubsection*{Position as a function of time}
+\[
+  v = \frac{ds}{dt} = a_c t + v_0
+  \;\Rightarrow\;
+  s(t) = \tfrac{1}{2}a_c t^2 + v_0 t + C
+\]
+At $t=0,\; s=s_0 \;\Rightarrow\; C=s_0$:
+\begin{keybox}
+\[
+  s(t) = \tfrac{1}{2}a_c t^2 + v_0 t + s_0
+\]
+\end{keybox}
+ 
+\subsubsection*{Velocity as a function of position}
+Using $a_c\,ds = v\,dv$:
+\[
+  \int_{s_0}^{s} a_c\,ds = \int_{v_0}^{v} v\,dv
+  \;\Rightarrow\;
+  a_c(s - s_0) = \frac{v^2 - v_0^2}{2}
+\]
+\begin{keybox}
+\[
+  v^2 = v_0^2 + 2a_c(s - s_0)
+\]
+\end{keybox}
+ 
+\bigskip
+% ── Examples ──────────────────────────────────────────────────────────────────
+\subsection*{Example 1}
+ 
+The velocity of a car is $v(t) = 3t^2 + 2t$ ft/s with $s(0)=0$.
+Calculate its position and acceleration at any time $t$; give $s(3)$ and $a(3)$.
+ 
+\medskip
+\textbf{Position:}
+\[
+  v(t) = \frac{ds}{dt}
+  \;\Rightarrow\;
+  \int_0^s ds = \int_0^t (3t'^2 + 2t')\,dt'
+  \;\Rightarrow\;
+  s = t^3 + t^2
+\]
+\[
+  s(3) = 27 + 9 = \boxed{36\text{ ft}}
+\]
+ 
+\textbf{Acceleration:}
+\[
+  a(t) = \frac{dv}{dt} = 6t + 2
+  \;\Rightarrow\;
+  a(3) = \boxed{20\text{ ft/s}^2}
+\]
+ 
+\subsection*{Example 2}
+ 
+A projectile is thrown vertically at $v_0 = 75$ m/s from height $s_0 = 40$ m.
+Determine the maximum height and the speed when hitting the ground.
+Assume constant acceleration $a_c = g = -9.81$ m/s$^2$.
+ 
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % vertical axis
+  \draw[thinaxis] (0,-0.3) -- (0,4.2) node[above,smalllabel]{$s$};
+  % reference levels
+  \draw[dashed line] (-0.2,0.8) -- (1.5,0.8);
+  \node[left,smalllabel] at (-0.2,0.8) {$s_0$};
+  \draw[dashed line] (-0.2,3.5) -- (1.5,3.5);
+  \node[left,smalllabel] at (-0.2,3.5) {$s_{\max}$};
+  \draw[dashed line] (-0.2,0.0) -- (1.5,0.0);
+  \node[left,smalllabel] at (-0.2,0.0) {$0$};
+  % trajectory arrow
+  \draw[vector] (0.7,0.8) -- (0.7,3.5);
+  \draw[vector] (0.7,3.5) -- (0.7,0.0);
+  % annotation
+  \node[right,label,align=left] at (1.6,2.2)
+    {$v=0$ at $s_{\max}$};
+\end{tikzpicture}
+\end{center}
+ 
+\textbf{Maximum height} (when $v=0$):
+\[
+  0 = v_0^2 + 2a_c(s_{\max}-s_0)
+  \;\Rightarrow\;
+  s_{\max} = s_0 - \frac{v_0^2}{2a_c}
+  = 40 - \frac{75^2}{2(-9.81)}
+  \approx \boxed{327\text{ m}}
+\]
+ 
+\textbf{Speed at ground} (when $s=0$):
+\[
+  v^2 = v_0^2 + 2a_c(0-s_0)
+  = 75^2 + 2(-9.81)(-40)
+  \;\Rightarrow\;
+  v \approx \boxed{-80.1\text{ m/s}}
+\]
+ 
+\subsection*{Example 3}
+ 
+Given $v(t) = 3t^2 - 6t$ m/s, calculate the distance travelled in 3.5 s,
+the average velocity, and the average speed.
+ 
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \draw[axis] (-0.3,0) -- (4.5,0) node[right,label]{$t$};
+  \draw[thinaxis] (0,-1.6) -- (0,2.0) node[above,label]{$v(t)$};
+  % curve v = 3t^2 - 6t
+  \draw[curve,domain=0:3.5,samples=80] plot (\x, {0.6*(3*\x*\x - 6*\x)});
+  % zero crossing at t=2
+  \node[dot] at (2,0){};
+  \node[below,smalllabel] at (2,-0.1){$t=2$};
+  % annotations
+  \node[right,smalllabel,color=midgray] at (0.7,0.7) {$v<0$};
+  \node[right,smalllabel,color=midgray] at (0.7,-0.6) {going left};
+  \node[right,smalllabel,color=midgray] at (3.0,0.8) {$v>0$};
+  \node[right,smalllabel,color=midgray] at (3.0,0.4) {going right};
+  % direction arrows on s-axis
+  \draw[axis] (5.2,0) -- (8.0,0) node[right,label]{$s$};
+  \draw[vector,color=midgray] (6.0,0.3) -- (7.2,0.3);
+  \draw[vector,color=midgray] (7.2,0.3) -- (6.5,0.3);
+  \node[above,smalllabel] at (6.1,0.3){$t=2$};
+  \node[above,smalllabel] at (6.8,0.3){};
+\end{tikzpicture}
+\end{center}
+ 
+\[
+  s(t) = t^3 - 3t^2 \quad\text{(assuming } s_0=0\text{ at }t=0\text{)}
+\]
+\[
+  s(2) = 8-12 = -4\text{ m}, \qquad s(3.5) = 42.875 - 36.75 = 6.125\text{ m}
+\]
+\[
+  d = \underbrace{|{-4} - 0|}_{t=0\to 2}
+    + \underbrace{|6.125 - ({-4})|}_{t=2\to 3.5}
+    = 4 + 10.125
+    = \boxed{14.125\text{ m}}
+\]
+Tracking the reversal at $t=2$:
+\[
+  d = 4 + 4 + 6.125 = \boxed{14.125\text{ m}}
+\]
+\[
+  v_{\text{avg}} = \frac{\Delta s}{\Delta t} = \frac{6.125}{3.5} = \boxed{1.75\text{ m/s}}
+\]
+\[
+  \text{Average speed} = \frac{d}{\Delta t} = \frac{14.125}{3.5} = \boxed{4.04\text{ m/s}}
+\]
+ 
+\newpage
+
+
 
 \subsection*{Example}
 \textbf{Example:} Description.
