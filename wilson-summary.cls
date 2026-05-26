@@ -47,9 +47,12 @@
 
 % keybox — ruled box for key results
 \newenvironment{keybox}{%
-  \begin{mdframed}[linewidth=0.8pt, innertopmargin=4pt, innerbottommargin=4pt]
+  \vspace{4pt}
+  \begin{mdframed}[linewidth=0.8pt, innertopmargin=6pt, innerbottommargin=6pt,
+      innerleftmargin=8pt, innerrightmargin=8pt]
 }{%
   \end{mdframed}
+  \vspace{4pt}
 }
 
 % Safe defaults so the document compiles even if you forget to set them
