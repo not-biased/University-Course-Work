@@ -380,8 +380,6 @@ unique continuous function. Therefore, we use a \textbf{series of functions and/
     \node[dot] at (2.3, 0.95){};
     \draw[->,midgray,thin] (2.3,0.95) -- +(0.7,-0.35)
       node[right,smalllabel]{$v$};
-    \node[below right,label] at (2.0,-0.6)
-      {$v = \dfrac{ds}{dt}$ \;$\Rightarrow$ \emph{$v$ is the slope of $s(t)$}};
   \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -390,7 +388,97 @@ unique continuous function. Therefore, we use a \textbf{series of functions and/
   \item $v = \dfrac{ds}{dt}$ \quad $\Rightarrow$ \quad $v$ is the slope of $s(t)$
   \item $a = \dfrac{dv}{dt}$ \quad $\Rightarrow$ \quad $a$ is the slope of $v(t)$
 \end{itemize}
+
+\subsection*{Example — Piecewise Acceleration}
+
+The motion of a car is given by:
+\[
+  a(t) = \begin{cases}
+    10\text{ m/s}^2 & t \leq 10\text{ s} \\
+   -2\text{ m/s}^2  & t > 10\text{ s}
+  \end{cases}
+\]
+Assuming $v_0 = 0$, find $t'$ at which the car stops.
+
+\subsubsection*{Stage 1 — $t \leq 10$ s}
+% your integration here with align
+For $t \le 10$ s, integrate between $0$ and $t$:
+\[
+  \int_{v_0}^{v} dv = \int_0^t 10\,dt
+  \;\Rightarrow\;
+  v - 0 = 10t
+  \;\Rightarrow\;
+  v(t) = 10t
+\]
+\[
+  v(10) = 100\text{ m/s}
+\]
+
+\subsubsection*{Stage 2 — $t > 10$ s}  
+% integrate from t=10, v(10)=100 as initial condition
+\[
+  \int_{100}^{v} dv = \int_{10}^{t} (-2)\,dt
+  \;\Rightarrow\;
+  v - 100 = -2(t-10)
+  \;\Rightarrow\;
+  v(t) = -2t + 120
+\]
+Car stops when $v(t')=0$:
+\[
+  0 = -2t' + 120
+  \;\Rightarrow\;
+  \boxed{t' = 60\text{ s}}
+\]
+
+\subsubsection*{Position}
+For $t \le 10$ s:
+\[
+  \int_0^s ds = \int_0^t 10t'\,dt'
+  \;\Rightarrow\;
+  s = 5t^2
+\]
+\[
+  s(10) = 500\text{ m}
+\]
+
+For $t > 10$ s:
+\[
+  \int_{500}^{s} ds = \int_{10}^{t} (-2t'+120)\,dt'
+  \;\Rightarrow\;
+  s - 500 = \bigl[-t'^2 + 120t'\bigr]_{10}^{t}
+\]
+\[
+  s - 500 = -t^2+120t - (-100+1200)
+  \;\Rightarrow\;
+  s(t) = -t^2 + 120t - 600
+\]
+\[
+  s(60) = -3600 + 7200 - 600 = \boxed{3000\text{ m}}
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \draw[axis] (-0.3,0) -- (7.5,0) node[right,smalllabel]{$t$ (s)};
+  \draw[thinaxis] (0,-0.3) -- (0,3.8) node[above,smalllabel]{$s(t)$ (m)};
+  % Stage 1: s = 5t^2, scaled so s(10)=500 maps to y=2.0
+  \draw[curve,domain=0:1.67,samples=40]
+    plot (\x, {5*\x*\x * 0.004});
+  % Stage 2: s = -t^2+120t-600, t from 10 to 60
+  % x scaled: t -> x = (t/10)*1.67, y scaled: s -> y = s*0.004 + offset
+  \draw[curve,domain=1.67:6.0,samples=80]
+    plot (\x, {(-(\x*6)^2 + 120*(\x*6) - 600)*0.004 + 0.0});
+  % tick marks
+  \node[below,smalllabel] at (1.67,0) {$10$};
+  \node[below,smalllabel] at (6.0,0)  {$60$};
+  \node[left,smalllabel]  at (0,2.0)  {$500$};
+  \node[left,smalllabel]  at (0,3.5)  {$3000$};
+  \draw[dashed line] (1.67,0) -- (1.67,2.0) -- (0,2.0);
+  \draw[dashed line] (6.0,0)  -- (6.0,3.5)  -- (0,3.5);
+\end{tikzpicture}
+\end{center}
 \newpage
+
+
 % ══════════════════════════════════════════════════════════════════════════════
 %  SECTION 12.4 — GENERAL CURVILINEAR MOTION
 % ══════════════════════════════════════════════════════════════════════════════
