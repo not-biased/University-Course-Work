@@ -19,6 +19,20 @@
 \newcommand{\chaptertitle}[1]{\def\@chaptertitle{#1}}
 \newcommand{\coursename}[1]{\def\@coursename{#1}}
 \newcommand{\semester}[1]{\def\@semester{#1}}
+\RequirePackage{mdframed}
+
+% \definition{Term} — bold label with italicised term
+\newcommand{\definition}[1]{\textbf{Definition} (\textit{#1}).\ }
+
+% \formula{Label} — bold label for named formulas
+\newcommand{\formula}[1]{\textbf{Formula} (\textit{#1}).\ }
+
+% keybox — ruled box for key results
+\newenvironment{keybox}{%
+  \begin{mdframed}[linewidth=0.8pt, innertopmargin=4pt, innerbottommargin=4pt]
+}{%
+  \end{mdframed}
+}
 
 % Safe defaults so the document compiles even if you forget to set them
 \def\@chaptertitle{Chapter Title}
