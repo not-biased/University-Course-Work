@@ -143,16 +143,17 @@ Distance $=$ total length travelled by the particle.
   \draw[curve,bend left=45] (0.5,0.8) to node[above,smalllabel]{distance} (4.0,0.8);
   \draw[vector] (0.5,0.5) -- node[below,smalllabel]{displacement} (4.0,0.5);
   \node[left,smalllabel] at (-0.2,0.8) {ex 1};
- 
-  % ex 2 — back and forth
-  \draw[axis] (-0.3,-0.5) -- (5.0,-0.5) node[right,smalllabel]{$s$};
-  \node[dot] at (0.5,-0.5){}; \node[below,smalllabel] at (0.5,-0.5){$s_1$};
-  \node[dot] at (3.5,-0.5){}; \node[below,smalllabel] at (3.5,-0.5){$s_2$};
-  \draw[vector,color=accent!60] (0.5,-0.3) -- (3.5,-0.3);
-  \draw[vector,color=accent!60] (3.5,-0.3) -- (2.6,-0.3);
-  \node[above,smalllabel] at (2.0,-0.3) {distance};
-  \draw[vector] (0.5,-0.7) -- node[below,smalllabel]{displacement} (2.6,-0.7);
-  \node[left,smalllabel] at (-0.2,-0.5) {ex 2};
+
+
+  % ex 2 — back and forth (Shifted down by 1.5 units)
+  \draw[axis] (-0.3,-2.0) -- (5.0,-2.0) node[right,smalllabel]{$s$};
+  \node[dot] at (0.5,-2.0){}; \node[below,smalllabel] at (0.5,-2.0){$s_1$};
+  \node[dot] at (3.5,-2.0){}; \node[below,smalllabel] at (3.5,-2.0){$s_2$};
+  \draw[vector,color=accent!60] (0.5,-1.8) -- (3.5,-1.8);
+  \draw[vector,color=accent!60] (3.5,-1.8) -- (2.6,-1.8);
+  \node[above,smalllabel] at (2.0,-1.8) {distance};
+  \draw[vector] (0.5,-2.2) -- node[below,smalllabel]{displacement} (2.6,-2.2);
+  \node[left,smalllabel] at (-0.2,-2.0) {ex 2};
 \end{tikzpicture}
 \end{center}
  
