@@ -12,6 +12,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{parskip}
 \RequirePackage{bm}
+\RequirePackage{xcolor}
 \RequirePackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning}
 % ── TikZ style definitions ──
